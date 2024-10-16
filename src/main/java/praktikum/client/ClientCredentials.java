@@ -22,7 +22,7 @@ public class ClientCredentials {
         this.password = password;
     }
 
-    public ClientCredentials(){
+    public ClientCredentials() {
 
     }
 
@@ -36,5 +36,4 @@ public class ClientCredentials {
         return new ClientCredentials(client.getEmail(), client.getPassword());
 
     }
-
 }

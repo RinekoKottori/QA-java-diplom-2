@@ -16,32 +16,32 @@ public class ClientRegistrationTest {
     public void checkRegistrationNewClient() {
         var client = Client.randomClient();
         Response createResponse = clientShared.registrationNewClient(client);
-        token = checkClient.getOkForRegistratedClient(createResponse);
+        token = checkClient.getOkForRegisteredClient(createResponse);
     }
 
     @Test
-    public void checkRationTwoSameClients(){
+    public void checkRationTwoSameClients() {
         var client = Client.randomClient();
         Response firstCreateResponse = clientShared.registrationNewClient(client);
-        token = checkClient.getOkForRegistratedClient(firstCreateResponse);
+        token = checkClient.getOkForRegisteredClient(firstCreateResponse);
         Response secondCreateResponse = clientShared.registrationNewClient(client);
-        checkClient.getForbiddenForRegistratedDoubleClient(secondCreateResponse);
+        checkClient.getForbiddenForRegisteredDoubleClient(secondCreateResponse);
     }
 
     @Test
-    public void checkRegistrationClientWithoutPassword(){
+    public void checkRegistrationClientWithoutPassword() {
         var client = Client.withOutPassword();
         Response response = clientShared.registrationNewClient(client);
-        checkClient.getForbiddenForRegistratedClientWithoutPassword(response);
+        checkClient.getForbiddenForRegisteredClientWithoutPassword(response);
     }
 
     @After
     public void tearDown() {
         ClientShared deleteClient = new ClientShared();
-        CheckClient isClientdeleted = new CheckClient();
+        CheckClient isClientDeleted = new CheckClient();
         if (token != null) {
-        Response deletedClient =  deleteClient.deleteClient(token);
-        isClientdeleted.getAcceptedForDeletingClient(deletedClient);
+            Response deletedClient = deleteClient.deleteClient(token);
+            isClientDeleted.getAcceptedForDeletedClient(deletedClient);
         }
     }
 }

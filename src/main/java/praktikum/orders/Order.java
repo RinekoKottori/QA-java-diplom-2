@@ -1,26 +1,27 @@
 package praktikum.orders;
 
 import java.util.HashMap;
+import java.util.List;
 
-//создание заказа POST https://stellarburgers.nomoreparties.site/api/orders
-// и получение заказа кон-ого поль-ля GET https://stellarburgers.nomoreparties.site/api/orders
+//Хранение интерфейса ингредиентов и преобразование в нужный формат при передаче в тело запроса
 public class Order {
-    private HashMap ingredients;
+    private HashMap<String, List<String>> ingredients;
 
-    public HashMap getIngredients() {
+    public Order(List<String> ingredients) {
+        this.ingredients = new HashMap<>();
+        this.ingredients.put("ingredients", ingredients); // сохраняем ингредиенты в нужном формате
+    }
+
+    public HashMap<String, List<String>> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(HashMap ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = new HashMap<>();
+        this.ingredients.put("ingredients", ingredients);
     }
 
-    public Order(HashMap ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public Order (){
+    public Order() {
 
     }
-
 }

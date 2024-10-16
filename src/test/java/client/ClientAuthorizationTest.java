@@ -16,32 +16,32 @@ public class ClientAuthorizationTest {
     Client client = Client.randomClient();
 
     @Before
-    public void setUp(){
-       Response clientResponse = clientShared.registrationNewClient(client);
-       token = checkClient.getOkForRegistratedClient(clientResponse);
+    public void setUp() {
+        Response clientResponse = clientShared.registrationNewClient(client);
+        token = checkClient.getOkForRegisteredClient(clientResponse);
     }
 
     @Test
-    public void checkAuthorizationClient(){
-        Response authorizationResponse = clientShared.authorizationClient(token, ClientCredentials.fromClient(client));
+    public void checkAuthorizationClient() {
+        Response authorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));
         checkClient.getOkForAuthorizationClient(authorizationResponse);
     }
 
     @Test
-    public void checkAuthorizationClientWithIncorrectData(){
-        Response firstAuthorizationResponse = clientShared.authorizationClient(token, ClientCredentials.fromClient(client));
+    public void checkAuthorizationClientWithIncorrectData() {
+        Response firstAuthorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));
         checkClient.getOkForAuthorizationClient(firstAuthorizationResponse);
-        Response secondAuthorizationResponse = clientShared.authorizationClient(token, new ClientCredentials("Babochka3r@ya.com", "bubu7"));
+        Response secondAuthorizationResponse = clientShared.authorizationClient(new ClientCredentials("Babochka3r@ya.com", "bubu7"));
         checkClient.getUnauthorizedClient(secondAuthorizationResponse);
     }
 
     @After
     public void tearDown() {
         ClientShared deleteClient = new ClientShared();
-        CheckClient isClientdeleted = new CheckClient();
+        CheckClient isClientDeleted = new CheckClient();
         if (token != null) {
-            Response deletedClient =  deleteClient.deleteClient(token);
-            isClientdeleted.getAcceptedForDeletingClient(deletedClient);
+            Response deletedClient = deleteClient.deleteClient(token);
+            isClientDeleted.getAcceptedForDeletedClient(deletedClient);
         }
     }
 }

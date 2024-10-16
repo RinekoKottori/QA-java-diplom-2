@@ -46,13 +46,12 @@ public class Client {
         this.name = name;
     }
 
-    //создать уникального пользователя;
-    //создать пользователя, который уже зарегистрирован;
+    //создание уникального пользователя;
     public static Client randomClient() {
         return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(1, 3) + "@ya.com", "pushnoy" + RandomStringUtils.randomAlphanumeric(1, 5), "yavasneznau");
     }
 
-    //создать пользователя и не заполнить одно из обязательных полей.
+    //создание пользователя без пароля;
     public static Client withOutPassword() {
         return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(1, 3) + "@ya.com", null, "yavasneznau");
     }
