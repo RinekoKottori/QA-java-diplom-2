@@ -11,7 +11,7 @@ import praktikum.client.ClientShared;
 import praktikum.orders.CheckOrder;
 import praktikum.orders.OrderShared;
 
-public class OrderPositiveTest {
+public class GetOrdersTest {
     OrderShared order = new OrderShared();
     CheckOrder checkOrder = new CheckOrder();
     Client client = Client.randomClient();
@@ -26,17 +26,17 @@ public class OrderPositiveTest {
     }
 
     @Test
-    @DisplayName("Check is it possible to create order without accessToken")
-    public void checkCreationOrderWithoutToken() {
-        Response response = order.createNewOrderWithoutToken();
-        checkOrder.checkCreateOrderWithoutAuthorization(response);
+    @DisplayName("Check is it possible to get a list of orders")
+    public void checkIsOrderMapIsGetting() {
+        Response response = order.getOrdersWithToken(token);
+        checkOrder.checkIsOrderMapIsGettingWithToken(response);
     }
 
     @Test
-    @DisplayName("Check is it possible to create order with accessToken")
-    public void checkCreationOrderWithToken() {
-        Response response = order.createNewOrderWithToken(token);
-        checkOrder.checkCreateOrderWithAuthorization(response);
+    @DisplayName("Check is it possible to get a list of orders without accessToken ")
+    public void checkGetOrdersWithoutToken() {
+        Response response = order.getOrdersWithoutToken();
+        checkOrder.checkIsOrderMapGettingWithoutToken(response);
     }
 
     @After

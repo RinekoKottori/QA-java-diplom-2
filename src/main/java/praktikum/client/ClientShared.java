@@ -11,7 +11,7 @@ import java.util.HashMap;
 //методы для авторизации и создания, и др.
 public class ClientShared extends Shared {
 
-    @Step("Send POST request to api/auth/register")
+    @Step("Send POST request to api/auth/register to create new client")
     @DisplayName("Register a client")
     public Response registrationNewClient(Client client) {
         return spec()
@@ -20,7 +20,7 @@ public class ClientShared extends Shared {
                 .post(CREATE_REGISTRATION_CLIENT);
     }
 
-    @Step("Send POST request to api/auth/login")
+    @Step("Send POST request to api/auth/login to login client")
     @DisplayName("Authorize a client")
     public Response authorizationClient(ClientCredentials clientCredentials) {
         return spec()
@@ -29,7 +29,7 @@ public class ClientShared extends Shared {
                 .post(AUTHORIZATION_CLIENT);
     }
 
-    @Step("Send DELETE request to api/auth/user")
+    @Step("Send DELETE request to api/auth/user to delete client")
     @DisplayName("Delete a client")
     public Response deleteClient(String token) {
         return spec()
@@ -38,7 +38,7 @@ public class ClientShared extends Shared {
                 .delete(ACTIONS_CLIENT);
     }
 
-    @Step("Send POST request to api/auth/user")
+    @Step("Send POST request to api/auth/user to get name and email from client profile")
     @DisplayName("Get name and email from client profile")
     public HashMap<String, String> getNameAndEmailFromAuthorization(Response response) {
         String email = response.then()
@@ -51,7 +51,7 @@ public class ClientShared extends Shared {
         return nameAndEmail;
     }
 
-    @Step("Send POST request to api/auth/user")
+    @Step("Send POST request to api/auth/user to get name")
     @DisplayName("Get name from client profile")
     public HashMap<String, String> getNameFromAuthorization(Response response) {
         String name = response.then()
@@ -61,7 +61,7 @@ public class ClientShared extends Shared {
         return newName;
     }
 
-    @Step("Send POST request to api/auth/user")
+    @Step("Send POST request to api/auth/user to get email from client profile")
     @DisplayName("Get email from client profile")
     public HashMap<String, String> getEmailFromAuthorization(Response response) {
         String email = response.then()
@@ -71,7 +71,7 @@ public class ClientShared extends Shared {
         return newEmail;
     }
 
-    @Step("Send PATCH request to api/auth/user")
+    @Step("Send PATCH request to api/auth/user to change name and email in client profile")
     @DisplayName("Change name and email in the profile of the registered client")
     public Response changeClientDataWithAuthorization(String token, HashMap<String, String> newProfileData) {
         newProfileData.put("email", "bubusya@ya.com");
@@ -84,7 +84,7 @@ public class ClientShared extends Shared {
                 .patch(ACTIONS_CLIENT);
     }
 
-    @Step("Send POST request to api/auth/user")
+    @Step("Send POST request to api/auth/user  to change name in client profile")
     @DisplayName("Change name in the profile of the registered client")
     public Response changeClientNameWithAuthorization(String token, HashMap<String, String> name) {
         name.put("name", "karakul");
@@ -96,7 +96,7 @@ public class ClientShared extends Shared {
                 .patch(ACTIONS_CLIENT);
     }
 
-    @Step("Send POST request to api/auth/user")
+    @Step("Send POST request to api/auth/user  to change email in client profile")
     @DisplayName("Change email in the profile of the registered client")
     public Response changeClientEmailWithAuthorization(String token, HashMap<String, String> email) {
         email.put("email", "boradavochnik@ya.com");
@@ -108,7 +108,7 @@ public class ClientShared extends Shared {
                 .patch(ACTIONS_CLIENT);
     }
 
-    @Step("Send PATCH request to api/auth/user")
+    @Step("Send PATCH request to api/auth/user to change name and email in client profile without accessToken")
     @DisplayName("Change name and email in the profile of an unregistered client")
     public Response changeClientDataWithOutAuthorization(HashMap<String, String> newProfileData) {
         newProfileData.put("email", "koko@ya.com");
@@ -119,7 +119,7 @@ public class ClientShared extends Shared {
                 .patch(ACTIONS_CLIENT);
     }
 
-    @Step("Send PATCH request to api/auth/user")
+    @Step("Send PATCH request to api/auth/user to change name in client profile without accessToken")
     @DisplayName("Change name in the profile of an unregistered client")
     public Response changeClientNameWithOutAuthorization(HashMap<String, String> name) {
         name.put("name", "Alyosha");
@@ -129,7 +129,7 @@ public class ClientShared extends Shared {
                 .patch(ACTIONS_CLIENT);
     }
 
-    @Step("Send PATCH request to api/auth/user")
+    @Step("Send PATCH request to api/auth/user to change email in client profile without accessToken")
     @DisplayName("Change email in the profile of an unregistered client")
     public Response changeClientEmailWithOutAuthorization(HashMap<String, String> email) {
         email.put("email", "buterbrod@ya.com");

@@ -1,5 +1,6 @@
 package order;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -25,33 +26,31 @@ public class OrderNegativeTest {
     }
 
     @Test
+    @DisplayName("Check is it possible to create order without accessToken")
     public void checkCreationOrderWithoutTokenAndIngredients() {
         Response response = order.createNewOrderWithoutTokenAndIngredients();
         checkOrder.checkCreateOrderWithoutAuthorizationAndIngredients(response);
     }
 
     @Test
+    @DisplayName("Check is it possible to create order with wrong hashes of ingredients and without accessToken")
     public void checkCreationOrderWithoutTokenAndWrongIngredientsHash() {
         Response response = order.createNewOrderWithWrongHashIngredients();
         checkOrder.checkCreateOrderWithoutAuthorizationAndWrongHashIngredients(response);
     }
 
     @Test
+    @DisplayName("Check is it possible to create order without ingredients and without accessToken")
     public void checkCreationOrderWithTokenAndWithoutIngredients() {
         Response response = order.createNewOrderWithTokenAndWithoutIngredients();
         checkOrder.checkCreateOrderWithAuthorizationAndWithoutIngredients(response);
     }
 
     @Test
+    @DisplayName("Check is it possible to create order with accessToken and wrong hashes of ingredients")
     public void checkCreationOrderWithTokenAndWrongIngredientsHash() {
         Response response = order.createNewOrderWithTokenAndWithWrongHashIngredients();
         checkOrder.checkCreateOrderWithAuthorizationAndWrongHashIngredients(response);
-    }
-
-    @Test
-    public void checkGetOrdersWithoutToken() {
-        Response response = order.getOrdersWithoutToken();
-        checkOrder.checkIsOrderMapGettingWithoutToken(response);
     }
 
     @After

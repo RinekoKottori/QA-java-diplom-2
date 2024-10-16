@@ -1,5 +1,6 @@
 package client;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Test;
@@ -13,6 +14,7 @@ public class ClientRegistrationTest {
     String token;
 
     @Test
+    @DisplayName("Check is new client can be created")
     public void checkRegistrationNewClient() {
         var client = Client.randomClient();
         Response createResponse = clientShared.registrationNewClient(client);
@@ -20,7 +22,8 @@ public class ClientRegistrationTest {
     }
 
     @Test
-    public void checkRationTwoSameClients() {
+    @DisplayName("Check is client can be created twice")
+    public void checkRegistrationTwoSameClients() {
         var client = Client.randomClient();
         Response firstCreateResponse = clientShared.registrationNewClient(client);
         token = checkClient.getOkForRegisteredClient(firstCreateResponse);
@@ -29,6 +32,7 @@ public class ClientRegistrationTest {
     }
 
     @Test
+    @DisplayName("Check is new client can be created without password")
     public void checkRegistrationClientWithoutPassword() {
         var client = Client.withOutPassword();
         Response response = clientShared.registrationNewClient(client);

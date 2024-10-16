@@ -1,5 +1,6 @@
 package client;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +15,6 @@ import java.util.HashMap;
 public class ClientProfileChangeNegativeTest {
     ClientShared clientShared = new ClientShared();
     CheckClient checkClient = new CheckClient();
-    Client client = Client.randomClient();
     Response authorizationResponse;
     HashMap<String, String> newName;
     HashMap<String, String> newEmail;
@@ -23,13 +23,14 @@ public class ClientProfileChangeNegativeTest {
 
     @Before
     public void setUp() {
+        Client client = Client.randomClient();
         Response clientResponse = clientShared.registrationNewClient(client);
         token = checkClient.getOkForRegisteredClient(clientResponse);
         authorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));
-
     }
 
     @Test
+    @DisplayName("Check is user without authorization can change email and name in profile")
     public void checkChangeDataInProfileNonAuthorizedClient() {
         newProfileData = clientShared.getNameAndEmailFromAuthorization(authorizationResponse);
         Response changeResponse = clientShared.changeClientDataWithOutAuthorization(newProfileData);
@@ -37,6 +38,7 @@ public class ClientProfileChangeNegativeTest {
     }
 
     @Test
+    @DisplayName("Check is user without authorization can change name in profile")
     public void checkChangeNameInProfileNonAuthorizedClient() {
         newName = clientShared.getNameFromAuthorization(authorizationResponse);
         Response changeResponse = clientShared.changeClientNameWithOutAuthorization(newName);
@@ -44,6 +46,7 @@ public class ClientProfileChangeNegativeTest {
     }
 
     @Test
+    @DisplayName("Check is user without authorization can change email in profile")
     public void checkChangeEmailInProfileNonAuthorizedClient() {
         newEmail = clientShared.getEmailFromAuthorization(authorizationResponse);
         Response changeResponse = clientShared.changeClientEmailWithOutAuthorization(newEmail);

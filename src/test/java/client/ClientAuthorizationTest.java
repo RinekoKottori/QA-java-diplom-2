@@ -1,5 +1,6 @@
 package client;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -22,12 +23,14 @@ public class ClientAuthorizationTest {
     }
 
     @Test
+    @DisplayName("Check authorization client")
     public void checkAuthorizationClient() {
         Response authorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));
         checkClient.getOkForAuthorizationClient(authorizationResponse);
     }
 
     @Test
+    @DisplayName("Check authorization client with incorrect email and password")
     public void checkAuthorizationClientWithIncorrectData() {
         Response firstAuthorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));
         checkClient.getOkForAuthorizationClient(firstAuthorizationResponse);

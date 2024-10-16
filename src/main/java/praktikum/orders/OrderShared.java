@@ -11,7 +11,7 @@ import java.util.List;
 //методы для создания и др манипуляций с заказами
 public class OrderShared extends Shared {
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders to create order without accessToken")
     @DisplayName("Create order without authorization with ingredient")
     public Response createNewOrderWithoutToken() {
         IngredientsShared ingredients = new IngredientsShared();
@@ -23,7 +23,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders to create order without accessToken and without ingredients")
     @DisplayName("Create order without authorization and without ingredients")
     public Response createNewOrderWithoutTokenAndIngredients() {
         Order order = new Order(null);
@@ -34,7 +34,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders to create order without accessToken and wrong hash of ingredients")
     @DisplayName("Create order without authorization and wrong hash ingredients")
     public Response createNewOrderWithWrongHashIngredients() {
         List<String> ingredients = List.of("61c0c5a71d4582101bdaaa6d", "670fda549ed2898761b4e4d5c");
@@ -46,7 +46,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders  to create order with accessToken")
     @DisplayName("Create order with authorization and with ingredient")
     public Response createNewOrderWithToken(String token) {
         IngredientsShared ingredients = new IngredientsShared();
@@ -59,7 +59,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders to create order with accessToken, but without ingredients")
     @DisplayName("Create order with authorization and without ingredients")
     public Response createNewOrderWithTokenAndWithoutIngredients() {
         Order order = new Order(null);
@@ -70,7 +70,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send POST request to /api/orders")
+    @Step("Send POST request to /api/orders to create order with accessToken, but with wrong hashes of ingredients")
     @DisplayName("Create order with authorization and with wrong hash ingredients")
     public Response createNewOrderWithTokenAndWithWrongHashIngredients() {
         List<String> ingredients = List.of("61c0c5a71d4582101bdaaa6d", "670fda549ed2898761b4e4d5c");
@@ -82,7 +82,7 @@ public class OrderShared extends Shared {
                 .post(CREATE_ORDER);
     }
 
-    @Step("Send GET request to /api/orders")
+    @Step("Send GET request to /api/orders to get order list without accessToken")
     @DisplayName("Get orders without authorization")
     public Response getOrdersWithoutToken() {
         return spec()
@@ -90,7 +90,7 @@ public class OrderShared extends Shared {
                 .get(GET_ORDERS);
     }
 
-    @Step("Send GET request to /api/orders")
+    @Step("Send GET request to /api/orders to get order list with accessToken")
     @DisplayName("Get orders with authorization")
     public Response getOrdersWithToken(String token) {
             return spec()
