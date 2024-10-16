@@ -36,12 +36,6 @@ public class OrderPositiveTest {
         checkOrder.checkCreateOrderWithAuthorization(response);
     }
 
-    @Test
-    public void checkIsOrderMapIsGetting() {
-        Response response = order.getOrdersWithToken(token);
-        checkOrder.checkIsOrderMapIsGettingWithToken(response);
-    }
-
     @After
     public void tearDown() {
         ClientShared deleteClient = new ClientShared();

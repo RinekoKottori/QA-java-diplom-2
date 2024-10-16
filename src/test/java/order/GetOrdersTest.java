@@ -10,7 +10,7 @@ import praktikum.client.ClientShared;
 import praktikum.orders.CheckOrder;
 import praktikum.orders.OrderShared;
 
-public class OrderNegativeTest {
+public class GetOrdersTest {
     OrderShared order = new OrderShared();
     CheckOrder checkOrder = new CheckOrder();
     Client client = Client.randomClient();
@@ -25,27 +25,15 @@ public class OrderNegativeTest {
     }
 
     @Test
-    public void checkCreationOrderWithoutTokenAndIngredients() {
-        Response response = order.createNewOrderWithoutTokenAndIngredients();
-        checkOrder.checkCreateOrderWithoutAuthorizationAndIngredients(response);
+    public void checkIsOrderMapIsGetting() {
+        Response response = order.getOrdersWithToken(token);
+        checkOrder.checkIsOrderMapIsGettingWithToken(response);
     }
 
     @Test
-    public void checkCreationOrderWithoutTokenAndWrongIngredientsHash() {
-        Response response = order.createNewOrderWithWrongHashIngredients();
-        checkOrder.checkCreateOrderWithoutAuthorizationAndWrongHashIngredients(response);
-    }
-
-    @Test
-    public void checkCreationOrderWithTokenAndWithoutIngredients() {
-        Response response = order.createNewOrderWithTokenAndWithoutIngredients();
-        checkOrder.checkCreateOrderWithAuthorizationAndWithoutIngredients(response);
-    }
-
-    @Test
-    public void checkCreationOrderWithTokenAndWrongIngredientsHash() {
-        Response response = order.createNewOrderWithTokenAndWithWrongHashIngredients();
-        checkOrder.checkCreateOrderWithAuthorizationAndWrongHashIngredients(response);
+    public void checkGetOrdersWithoutToken() {
+        Response response = order.getOrdersWithoutToken();
+        checkOrder.checkIsOrderMapGettingWithoutToken(response);
     }
 
     @After

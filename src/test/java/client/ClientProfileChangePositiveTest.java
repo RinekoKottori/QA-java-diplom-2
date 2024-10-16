@@ -14,7 +14,6 @@ import java.util.HashMap;
 public class ClientProfileChangePositiveTest {
     ClientShared clientShared = new ClientShared();
     CheckClient checkClient = new CheckClient();
-    Client client = Client.randomClient();
     HashMap<String, String> newName;
     HashMap<String, String> newEmail;
     HashMap<String, String> newProfileData;
@@ -23,6 +22,7 @@ public class ClientProfileChangePositiveTest {
 
     @Before
     public void setUp() {
+        Client client = Client.randomClient();
         Response clientResponse = clientShared.registrationNewClient(client);
         token = checkClient.getOkForRegisteredClient(clientResponse);
         authorizationResponse = clientShared.authorizationClient(ClientCredentials.fromClient(client));

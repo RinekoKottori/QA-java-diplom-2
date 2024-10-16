@@ -48,12 +48,12 @@ public class Client {
 
     //создание уникального пользователя;
     public static Client randomClient() {
-        return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(1, 3) + "@ya.com", "pushnoy" + RandomStringUtils.randomAlphanumeric(1, 5), "yavasneznau");
+        return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(2, 11) + "@ya.com", "pushnoy" + RandomStringUtils.randomAlphanumeric(2, 11), "yavasneznau");
     }
 
     //создание пользователя без пароля;
     public static Client withOutPassword() {
-        return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(1, 3) + "@ya.com", null, "yavasneznau");
+        return new Client("Alexander" + RandomStringUtils.randomAlphanumeric(2, 11) + "@ya.com", null, "yavasneznau");
     }
 
 }
