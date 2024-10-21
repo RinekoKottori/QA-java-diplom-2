@@ -1,6 +1,5 @@
 package order;
 
-import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -26,14 +25,12 @@ public class GetOrdersTest {
     }
 
     @Test
-    @DisplayName("Check is it possible to get a list of orders")
     public void checkIsOrderMapIsGetting() {
         Response response = order.getOrdersWithToken(token);
         checkOrder.checkIsOrderMapIsGettingWithToken(response);
     }
 
     @Test
-    @DisplayName("Check is it possible to get a list of orders without accessToken ")
     public void checkGetOrdersWithoutToken() {
         Response response = order.getOrdersWithoutToken();
         checkOrder.checkIsOrderMapGettingWithoutToken(response);
