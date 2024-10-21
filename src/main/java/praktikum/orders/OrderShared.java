@@ -1,5 +1,6 @@
 package praktikum.orders;
 
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
@@ -7,6 +8,8 @@ import praktikum.Shared;
 import praktikum.ingredients.IngredientsShared;
 
 import java.util.List;
+
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 
 //методы для создания и др манипуляций с заказами
 public class OrderShared extends Shared {
@@ -48,7 +51,7 @@ public class OrderShared extends Shared {
 
     @Step("Send POST request to /api/orders  to create order with accessToken")
     @DisplayName("Create order with authorization and with ingredient")
-    public Response createNewOrderWithToken(String token) {
+    public Response createNewOrderWithToken(@Param(mode = HIDDEN)String token) {
         IngredientsShared ingredients = new IngredientsShared();
         Order order = ingredients.getRandomBurger();
         Object requestBody = order.getIngredients();
@@ -92,7 +95,7 @@ public class OrderShared extends Shared {
 
     @Step("Send GET request to /api/orders to get order list with accessToken")
     @DisplayName("Get orders with authorization")
-    public Response getOrdersWithToken(String token) {
+    public Response getOrdersWithToken(@Param(mode = HIDDEN)String token) {
             return spec()
                     .auth().oauth2(token)
                     .when()

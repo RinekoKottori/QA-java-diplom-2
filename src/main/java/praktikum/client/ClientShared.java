@@ -1,12 +1,15 @@
 package praktikum.client;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import praktikum.Shared;
 
 import java.util.HashMap;
+
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 
 //методы для авторизации и создания, и др.
 public class ClientShared extends Shared {
@@ -31,7 +34,7 @@ public class ClientShared extends Shared {
 
     @Step("Send DELETE request to api/auth/user to delete client")
     @DisplayName("Delete a client")
-    public Response deleteClient(String token) {
+    public Response deleteClient(@Param(mode = HIDDEN)String token) {
         return spec()
                 .auth().oauth2(token)
                 .when()
@@ -73,7 +76,7 @@ public class ClientShared extends Shared {
 
     @Step("Send PATCH request to api/auth/user to change name and email in client profile")
     @DisplayName("Change name and email in the profile of the registered client")
-    public Response changeClientDataWithAuthorization(String token, HashMap<String, String> newProfileData) {
+    public Response changeClientDataWithAuthorization(@Param(mode = HIDDEN)String token, HashMap<String, String> newProfileData) {
         newProfileData.put("email", "bubusya@ya.com");
         newProfileData.put("name", "Vorobushek");
         return spec()
@@ -86,7 +89,7 @@ public class ClientShared extends Shared {
 
     @Step("Send POST request to api/auth/user  to change name in client profile")
     @DisplayName("Change name in the profile of the registered client")
-    public Response changeClientNameWithAuthorization(String token, HashMap<String, String> name) {
+    public Response changeClientNameWithAuthorization(@Param(mode = HIDDEN)String token, HashMap<String, String> name) {
         name.put("name", "karakul");
         return spec()
                 .auth().oauth2(token)
@@ -98,7 +101,7 @@ public class ClientShared extends Shared {
 
     @Step("Send POST request to api/auth/user  to change email in client profile")
     @DisplayName("Change email in the profile of the registered client")
-    public Response changeClientEmailWithAuthorization(String token, HashMap<String, String> email) {
+    public Response changeClientEmailWithAuthorization(@Param(mode = HIDDEN)String token, HashMap<String, String> email) {
         email.put("email", "boradavochnik@ya.com");
         return spec()
                 .auth().oauth2(token)
